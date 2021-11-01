@@ -1,0 +1,31 @@
+<section>
+  <header>
+    Organizer: <strong>{{dateService.getDateForOrganizer()}}</strong>
+    <hr />
+  </header>
+
+  <main>
+    <ul *ngIf="tasks.length; else noTask">
+      <li class="task" *ngFor="let task of tasks;let i = index">
+        <span>
+          <strong>{{i + 1}}</strong>
+          {{task.title}}
+        </span>
+        <button class="btn btn-primary btn-remove" (click)="remove(task)"><i class="material-icons">delete</i></button>
+      </li>
+    </ul>
+    <ng-template #noTask><p class="text-cenetr">No task . . .</p></ng-template>
+  </main>
+
+  <footer>
+    <form (ngSubmit)="submit()" [formGroup]="form">
+      <input type="text" formControlName="title">
+
+      <button
+        type="submit"
+        class="btn btn-block btn-primary"
+        [disabled]="form.invalid"
+      >Add</button>
+    </form>
+  </footer>
+</section>
